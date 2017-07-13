@@ -618,12 +618,12 @@ header {
     margin: 0 auto;
 }
 
-header {
+.header {
     display: inline-block;
     font-size: 12px;
 }
 
-header h2{
+.header h2{
     padding-left:20px;
     font-size: 20px;
     color:white;

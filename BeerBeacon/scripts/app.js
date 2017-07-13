@@ -23,7 +23,7 @@ var globalApp = (function () {
    * Event listeners for UI elements
    *
    ****************************************************************************/
-    
+   //open beacon dialog 
   document.getElementById('addBeacon').addEventListener('click', function () {
       //open the place beacon dialog
       app.toggleAddDialog(true);
@@ -38,7 +38,7 @@ var globalApp = (function () {
       var display = document.querySelector('.footer-title');
       app.initBeerTimer(app.beerTimer * 60, display);
   });
-
+    //Close beacon dialog
   document.getElementById('btnAddCancel').addEventListener('click', function () {
         //hide add beer dialog 
       app.toggleAddDialog(false);
