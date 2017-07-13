@@ -1,0 +1,98 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beer Beacon</title>
+    <link rel="stylesheet" type="text/css" href="styles/inline.css">
+
+    <link rel="manifest" href="/manifest.json">
+    <!-- TODO - fix new ICONS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Beer Beacon">
+    <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+    <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
+</head>
+<body>
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '142753539618436',
+                cookie: true,
+                xfbml: true,
+                version: 'v2.8'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+        
+        
+    </script>
+
+    <main class="main">
+          <div id="map"></div> 
+    </main>
+    <footer class="footer">
+        <h1 class="footer-title">Add beacon -></h1>
+        <button id="addBeacon" ></button>
+    </footer>
+
+    <div class="dialog-container">
+        <div class="dialog">
+            <div class="dialog-title">How many beers</div>
+            <div class="dialog-body">
+                <select id="numberOfBeers">
+                    <!-- Values map to Yahoo Weather API Where On Earth Identifiers (WOEIDs).
+                         https://developer.yahoo.com/weather/documentation.html#req -->
+                    <option value="20">1</option>
+                    <option value="40">2</option>
+                    <option value="60">3</option>
+                    <option value="80">4</option>
+                    <option value="100">5</option>
+                    <option value="120">6</option>
+                    <option value="140">7</option>
+                </select>
+            </div>
+            <div class="dialog-buttons">
+                <button id="btnAddBeer" class="button">Add</button>
+                <button id="btnAddCancel" class="button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fb-dialog-container">
+
+        <span>We need to take a peak at your Facebook account to be able to match you with ypur friends, thats it.</span>
+        <br/>
+        <br/>
+        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+        
+    </div>
+
+    <div class="loader">
+        <svg viewBox="0 0 32 32" width="32" height="32">
+            <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+        </svg>
+    </div>
+
+    <!-- Uncomment the line below when ready to test with fake data -->
+    
+    <script src="scripts/app.js" async></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkh9RhHYu0ZpDU29RV4yHgHXYWQYzMCqo&callback=initMap" type="text/javascript"></script>
+    
+</body>
+</html>
