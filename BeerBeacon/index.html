@@ -39,7 +39,21 @@
         }(document, 'script', 'facebook-jssdk'));
 
     </script>
+    <header>
+        <h2>BEER BEACON</h2>
+        <button class="hamburger">&#9776;</button>
+        <button class="cross">&#735;</button>
+    </header>
 
+    <div class="menu">
+        <ul>
+            <a href="#"><li>En</li></a>
+            <a href="#"><li>Meny</li></a>
+            <a href="#"><li>Nöjd</li></a>
+            <a href="#"><li>Nu</li></a>
+            <a href="#"><li>?</li></a>
+        </ul>
+    </div> 
     <main class="main">
           <div id="map"></div> 
     </main>
@@ -73,7 +87,7 @@
 
     <div class="fb-dialog-container">
 
-        <span>We need to take a peak at your Facebook account to be able to match you with ypur friends, thats it.</span>
+        <span>We need to take a peek at your Facebook account to be able to match you with ypur friends, thats it.</span>
         <br/>
         <br/>
         <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
@@ -87,8 +101,10 @@
     </div>
 
     <!-- Uncomment the line below when ready to test with fake data -->
-    
+
+    <script src="scripts/jquery-3.2.1.min.js"></script>
     <script src="scripts/app.js" async></script>
+    <script src="scripts/burgermenu.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkh9RhHYu0ZpDU29RV4yHgHXYWQYzMCqo&callback=initMap" type="text/javascript"></script>
     
 </body>

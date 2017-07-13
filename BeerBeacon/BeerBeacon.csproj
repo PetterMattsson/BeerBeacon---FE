@@ -102,6 +102,8 @@
     <Content Include="images\wind.png" />
     <Content Include="index.html" />
     <Content Include="scripts\app.js" />
+    <Content Include="scripts\burgermenu.js" />
+    <Content Include="scripts\jquery-3.2.1.min.js" />
     <Content Include="service-worker.js" />
     <Content Include="styles\inline.css" />
     <Content Include="Web.config" />
