@@ -18,6 +18,7 @@ var filesToCache = [
     '/',
     '/index.html',
     '/scripts/app.js',
+    '/scripts/burgermenu.js',
     '/styles/inline.css',
     '/images/clear.png',
     '/images/cloudy-scattered-showers.png',
