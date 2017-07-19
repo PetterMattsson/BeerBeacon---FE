@@ -5,6 +5,18 @@ VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerBeacon", "BeerBeacon\BeerBeacon.csproj", "{CF9B98A0-6B4B-4492-A766-D002E9D17B28}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerBeaconLibrary", "BeerBeaconLibrary\BeerBeaconLibrary.csproj", "{44DA7A0C-95E5-4B5F-9D10-2424EA158129}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E5E399CE-E2DA-4057-8020-48B73C74B658}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerBeaconLibraryTests", "BeerBeaconLibraryTests\BeerBeaconLibraryTests.csproj", "{86E2F52D-3FAB-4B05-BAF6-2041AF844FCD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerBeaconFacade", "BeerBeaconFacade\BeerBeaconFacade.csproj", "{FCBD04C2-9B26-4C26-A3B4-FAB568B12477}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerBeaconBackend", "BeerBeaconBackend\BeerBeaconBackend.csproj", "{8BECA9DE-381B-42B6-AD15-DE117D6B32F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerBeaconService", "BeerBeaconService\BeerBeaconService.csproj", "{466020FE-64E6-45FC-B4AD-FE393A87F664}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +27,31 @@ Global
 		{CF9B98A0-6B4B-4492-A766-D002E9D17B28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF9B98A0-6B4B-4492-A766-D002E9D17B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF9B98A0-6B4B-4492-A766-D002E9D17B28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44DA7A0C-95E5-4B5F-9D10-2424EA158129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44DA7A0C-95E5-4B5F-9D10-2424EA158129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44DA7A0C-95E5-4B5F-9D10-2424EA158129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44DA7A0C-95E5-4B5F-9D10-2424EA158129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86E2F52D-3FAB-4B05-BAF6-2041AF844FCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E2F52D-3FAB-4B05-BAF6-2041AF844FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E2F52D-3FAB-4B05-BAF6-2041AF844FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E2F52D-3FAB-4B05-BAF6-2041AF844FCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCBD04C2-9B26-4C26-A3B4-FAB568B12477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCBD04C2-9B26-4C26-A3B4-FAB568B12477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCBD04C2-9B26-4C26-A3B4-FAB568B12477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCBD04C2-9B26-4C26-A3B4-FAB568B12477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BECA9DE-381B-42B6-AD15-DE117D6B32F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BECA9DE-381B-42B6-AD15-DE117D6B32F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BECA9DE-381B-42B6-AD15-DE117D6B32F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BECA9DE-381B-42B6-AD15-DE117D6B32F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{466020FE-64E6-45FC-B4AD-FE393A87F664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{466020FE-64E6-45FC-B4AD-FE393A87F664}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{466020FE-64E6-45FC-B4AD-FE393A87F664}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{466020FE-64E6-45FC-B4AD-FE393A87F664}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86E2F52D-3FAB-4B05-BAF6-2041AF844FCD} = {E5E399CE-E2DA-4057-8020-48B73C74B658}
 	EndGlobalSection
 EndGlobal
