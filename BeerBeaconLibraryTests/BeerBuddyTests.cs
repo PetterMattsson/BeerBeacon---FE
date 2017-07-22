@@ -15,7 +15,7 @@ namespace BeerBeaconLibraryTests
             {
                 BeaconId = 1,
                 UserId = 1,
-                Status = BuddyStatus.OnTheWay,
+                BuddyStatus = BuddyStatus.OnTheWay,
                 ETAdrinks = 2
             };
             var datetimeNow = new DateTime(2017, 07, 12, 10, 30, 0);

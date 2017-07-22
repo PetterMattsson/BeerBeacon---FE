@@ -1,6 +1,7 @@
 using BeerBeaconFacade;
 using BeerBeaconLibrary.Helpers;
 using BeerBeaconLibrary.Models;
+using BeerBeaconLibrary.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +28,8 @@ namespace BeerBeaconService.Controllers
             return beacons;
         }
 
-        [HttpGet("{latitude}/{longitude}")]
-        public IEnumerable<Beacon> GetByCoords(double latitude, double longitude)
+        [HttpGet("{latitude}/{longitude}/{mode}")]
+        public IEnumerable<Beacon> GetByCoords(double latitude, double longitude, int mode)
         {
             if (!Validator.ValidateLatitude(latitude))
             {
@@ -38,10 +39,9 @@ namespace BeerBeaconService.Controllers
             {
                 return null;
             }
-            var beacons = new List<Beacon>();
-            beacons = DataController.GetBeaconsByCoords(latitude, longitude).ToList();
 
-            return beacons;
+            var beacons = DataController.GetBeaconsByCoords(latitude, longitude).ToList();
+            return BeaconSelector.Select(beacons, mode);
         }
 
         [HttpGet("{id}")]
@@ -55,7 +55,8 @@ namespace BeerBeaconService.Controllers
 
             return beacon;
         }
-
+        
+        [HttpPost]
         public bool Post([FromBody]Beacon beacon)
         {
             if (!Validator.Validate(beacon))
@@ -90,6 +91,16 @@ namespace BeerBeaconService.Controllers
                 return false;
             }
             return DataController.DeleteBeacon(id);
+        }
+
+        [HttpGet("{id}/buddies")]
+        public IEnumerable<BuddyDTO> GetBuddiesByBeacon(int id)
+        {
+            if(!Validator.Validate(id))
+            {
+                return new List<BuddyDTO>();
+            }
+            return DataController.GetBuddiesByBeacon(id);
         }
     }
 }

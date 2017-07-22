@@ -24,7 +24,11 @@ namespace BeerBeaconService
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc()
+                    .AddJsonOptions(jsonOptions =>
+                     {
+                         jsonOptions.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                     });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

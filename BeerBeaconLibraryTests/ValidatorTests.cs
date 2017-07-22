@@ -18,8 +18,8 @@ namespace BeerBeaconLibraryTests
                 UserId = 1,
                 DrinkCounter = 3,
                 StartTime = new DateTime(2017, 9, 2),
-                Latitude = 12.14123,
-                Longitude = 132.12412
+                Latitude = 12.14123M,
+                Longitude = 132.12412M
             };
             var result = Validator.Validate(beacon);
             Assert.IsTrue(result);

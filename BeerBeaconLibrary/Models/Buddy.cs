@@ -9,7 +9,7 @@ namespace BeerBeaconLibrary.Models
         public int BuddyId { get; set; }
         public int UserId { get; set; }
         public int BeaconId { get; set; }
-        public BuddyStatus Status { get; set; }
+        public BuddyStatus BuddyStatus { get; set; }
         public int ETAdrinks { get; set; }
         public DateTime ETA
         {

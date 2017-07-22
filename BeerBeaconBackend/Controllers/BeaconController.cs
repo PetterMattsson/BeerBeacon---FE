@@ -1,6 +1,7 @@
 ﻿using BeerBeaconBackend.Repositories;
 using BeerBeaconLibrary.Models;
 using GeoCoordinatePortable;
+using System;
 using System.Collections.Generic;
 
 namespace BeerBeaconBackend.Controllers
@@ -29,6 +30,7 @@ namespace BeerBeaconBackend.Controllers
         public bool PostBeacon(Beacon beacon)
         {
             var repository = new BeaconRepository();
+            beacon.StartTime = DateTime.Now;
             return repository.PlaceBeacon(beacon);
         }
 

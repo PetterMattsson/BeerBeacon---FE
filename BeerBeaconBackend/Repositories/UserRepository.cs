@@ -5,13 +5,7 @@ namespace BeerBeaconBackend.Repositories
 {
     public class UserRepository
     {
-        //private string ConnectionString;
-
         public UserRepository() { }
-        //public UserRepository(string connectionString)
-        //{
-        //    ConnectionString = connectionString;
-        //}
 
         public User GetUser(int id)
         {

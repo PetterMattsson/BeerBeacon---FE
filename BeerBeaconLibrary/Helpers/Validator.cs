@@ -1,4 +1,5 @@
-﻿using BeerBeaconLibrary.Models;
+﻿using BeerBeaconLibrary.Enums;
+using BeerBeaconLibrary.Models;
 using System;
 
 namespace BeerBeaconLibrary.Helpers
@@ -7,23 +8,47 @@ namespace BeerBeaconLibrary.Helpers
     {
         public static bool Validate(Beacon beacon)
         {
+            if(beacon == null)
+            {
+                return false;
+            }
             return
-                Validate(beacon.BeaconId) &&
                 Validate(beacon.DrinkCounter) &&
-                beacon.StartTime != DateTime.MinValue &&
                 Validate(beacon.UserId) &&
-                ValidateLatitude(beacon.Latitude) &&
-                ValidateLongitude(beacon.Longitude);
+                ValidateLatitude((double)beacon.Latitude) &&
+                ValidateLongitude((double)beacon.Longitude);
         }
 
         public static bool Validate(User user)
         {
+            if(user == null)
+            {
+                return false;
+            }
             return Validate(user.UserId);
         }
 
-        public static bool Validate(int drinks)
+        public static bool Validate(Buddy buddy)
         {
-            return drinks > 0;
+            return
+                ValidateBuddyStatus((int)buddy.BuddyStatus) &&
+                Validate(buddy.UserId) &&
+                Validate(buddy.BeaconId);
+        }
+
+        public static bool ValidateBuddyStatus(int status)
+        {
+            return status < 3 && status > 0;
+        }
+
+        public static bool Validate(int value)
+        {
+            return value > 0;
+        }
+
+        public static bool Validate(int? value)
+        {
+            return value == null || value > 0;
         }
 
         public static bool Validate(Guid id)

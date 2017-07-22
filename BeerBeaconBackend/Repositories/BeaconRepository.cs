@@ -8,13 +8,7 @@ namespace BeerBeaconBackend.Repositories
 {
     public class BeaconRepository
     {
-        //private string ConnectionString;
-
         public BeaconRepository() { }
-        //public BeaconRepository(string connectionString)
-        //{
-        //    ConnectionString = connectionString;
-        //}
 
         public IEnumerable<Beacon> GetBeacons()
         {

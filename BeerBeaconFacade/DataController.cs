@@ -7,7 +7,6 @@ namespace BeerBeaconFacade
 {
     public class DataController
     {
-        //private string _connectionString = "Data Source=beerbeacondbserver.database.windows.net;Initial Catalog=BeerBeaconDB;Integrated Security=False;User ID=dbserverlogin;Password=********;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public DataController()
         {
 
@@ -40,6 +39,8 @@ namespace BeerBeaconFacade
         public bool DeleteBeacon(int id)
         {
             var controller = new BeaconController();
+            var buddyController = new BuddyController();
+            buddyController.DeleteBuddiesByBeacon(id);
             return controller.DeleteBeacon(id);
         }
 
@@ -71,6 +72,18 @@ namespace BeerBeaconFacade
         {
             var controller = new UserController();
             return controller.PostUser(user);
+        }
+
+        public bool SaveBuddy(Buddy buddy)
+        {
+            var controller = new BuddyController();
+            return controller.PostBuddy(buddy);
+        }
+
+        public bool EditBuddy(int id, int? status, int? drinks)
+        {
+            var controller = new BuddyController();
+            return controller.PutBuddy(id, status, drinks);
         }
     }
 }

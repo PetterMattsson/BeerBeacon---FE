@@ -10,8 +10,8 @@ namespace BeerBeaconLibrary.Models
         public int BeaconId { get; set; }
         public int UserId { get; set; }
         public BeaconType BeaconType { get; set; }
-        public double Longitude { get; set; }
-        public double Latitude { get; set; }
+        public decimal Longitude { get; set; }
+        public decimal Latitude { get; set; }
         public string LocationName { get; set; }
         public string LocationLink { get; set; }
         public bool Private { get; set; }
@@ -36,7 +36,7 @@ namespace BeerBeaconLibrary.Models
         {
             get
             {
-                return new GeoCoordinate(Latitude, Longitude);
+                return new GeoCoordinate((double)Latitude, (double)Longitude);
             }
         }
 

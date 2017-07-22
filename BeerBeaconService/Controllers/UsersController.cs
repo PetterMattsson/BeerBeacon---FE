@@ -1,9 +1,6 @@
 using BeerBeaconFacade;
-using BeerBeaconLibrary.Helpers;
 using BeerBeaconLibrary.Models;
-using BeerBeaconLibrary.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace BeerBeaconService.Controllers
 {
@@ -18,32 +15,23 @@ namespace BeerBeaconService.Controllers
             DataController = new DataController();
         }
 
-        [HttpGet("{id}")]
-        public User GetUser(int id)
+        [HttpGet("{id}/{mode}")]
+        public User GetUser(int id, int mode = 1)
         {
-            return DataController.GetUser(id);
-        }
-
-        [HttpGet("{id}")]
-        public User GetUserByBeacon(int beaconId)
-        {
-            return DataController.GetUserByBeacon(beaconId);
-        }
-
-        [HttpGet("{id}")]
-        public IEnumerable<BuddyDTO> GetVisitorsByBeacon(int beaconId)
-        {
-            var buddies = DataController.GetBuddiesByBeacon(beaconId);
-            return buddies;
+            switch (mode)
+            {
+                case 1:
+                    return DataController.GetUser(id);
+                case 2:
+                    return DataController.GetUserByBeacon(id);
+                default:
+                    return DataController.GetUser(id);
+            }
         }
 
         [HttpPost]
         public bool PostUser([FromBody]User user)
         {
-            if (!Validator.Validate(user))
-            {
-                return false;
-            }
             return DataController.SaveUser(user);
         }
     }

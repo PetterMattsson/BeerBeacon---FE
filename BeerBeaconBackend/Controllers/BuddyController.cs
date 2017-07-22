@@ -1,4 +1,6 @@
 ﻿using BeerBeaconBackend.Repositories;
+using BeerBeaconLibrary.Enums;
+using BeerBeaconLibrary.Models;
 using BeerBeaconLibrary.Models.DTOs;
 using System.Collections.Generic;
 
@@ -18,11 +20,46 @@ namespace BeerBeaconBackend.Controllers
                 var dto = new BuddyDTO
                 {
                     User = user,
-                    Status = buddy.Status
+                    Status = buddy.BuddyStatus,
+                    ETA = buddy.ETA
                 };
                 users.Add(dto);
             }
             return users;
+        }
+
+        public void DeleteBuddiesByBeacon(int id)
+        {
+            var buddyRepository = new BuddyRepository();
+            buddyRepository.DeleteByBeaconId(id);
+        }
+
+        public bool PostBuddy(Buddy buddy)
+        {
+            var buddyRepository = new BuddyRepository();
+            return buddyRepository.PostBuddy(buddy);
+        }
+
+        public bool PutBuddy(int id, int? status, int? drinks)
+        {
+            var buddyRepository = new BuddyRepository();
+            var buddy = buddyRepository.GetBuddy(id);
+            var newStatus = TurnToInt(status);
+            var newDrinks = TurnToInt(drinks);
+            if(newStatus > 0)
+            {
+                buddy.BuddyStatus = (BuddyStatus)newStatus;
+            }
+            if(newDrinks > 0)
+            {
+                buddy.ETAdrinks = newDrinks;
+            }
+            return buddyRepository.PutBuddy(buddy);
+        }
+
+        private int TurnToInt(int? value)
+        {
+            return value ?? -1;
         }
     }
 }
