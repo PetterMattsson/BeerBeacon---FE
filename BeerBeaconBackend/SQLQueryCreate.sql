@@ -2,6 +2,15 @@
 DROP TABLE Beacon
 DROP TABLE [User]
 
+CREATE TABLE LogEntry
+(
+LogEntryId int PRIMARY KEY IDENTITY(1,1) not null,
+EventTime DateTime not null,
+[Source] varchar(255) not null,
+InnerMessage varchar (255),
+StackTrace varchar(MAX) not null,
+[Message] varchar(255) not null
+)
 
 CREATE TABLE [User]
 (

@@ -32,6 +32,7 @@ namespace BeerBeaconBackend.Repositories
                 try
                 {
                     context.Users.Add(user);
+                    context.Entry(user).State = EntityState.Added;
                     context.SaveChanges();
                     result = GetUser(user.UserId) != null;
                 }

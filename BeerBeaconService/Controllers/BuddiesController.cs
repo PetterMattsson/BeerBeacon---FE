@@ -2,6 +2,7 @@ using BeerBeaconFacade;
 using BeerBeaconLibrary.Helpers;
 using BeerBeaconLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace BeerBeaconService.Controllers
 {
@@ -19,21 +20,39 @@ namespace BeerBeaconService.Controllers
         [HttpPost]
         public bool PostBuddy([FromBody]Buddy buddy)
         {
-            if(!Validator.Validate(buddy))
+            if (!Validator.Validate(buddy))
             {
                 return false;
             }
-            return DataController.SaveBuddy(buddy); 
+            try
+            {
+                return DataController.SaveBuddy(buddy);
+            }
+            catch (Exception e)
+            {
+                var entry = new LogEntry(e);
+                DataController.SaveLogEntry(entry);
+                return false;
+            }
         }
 
         [HttpPut("{id}/{status}/{drinks}")]
         public bool PutBuddy(int id, int? status, int? drinks)
         {
-            if(!Validator.Validate(id) && !Validator.Validate(status) && !Validator.Validate(drinks))
+            if (!Validator.Validate(id) && !Validator.Validate(status) && !Validator.Validate(drinks))
             {
                 return false;
             }
-            return DataController.EditBuddy(id, status, drinks);
+            try
+            {
+                return DataController.EditBuddy(id, status, drinks);
+            }
+            catch (Exception e)
+            {
+                var entry = new LogEntry(e);
+                DataController.SaveLogEntry(entry);
+                return false;
+            }
         }
     }
 }

@@ -64,26 +64,27 @@ namespace BeerBeaconBackend.Repositories
 
         public bool PlaceBeacon(Beacon beacon)
         {
-            var result = false;
+            var success = false;
             using (var context = new BeaconContext())
             {
                 try
                 {
                     context.Beacons.Add(beacon);
+                    context.Entry(beacon).State = EntityState.Added;
                     context.SaveChanges();
-                    result = GetBeacon(beacon.BeaconId) != null;
+                    success = GetBeacon(beacon.BeaconId) != null;
                 }
                 catch
                 {
                     throw;
                 }
             }
-            return result;
+            return success;
         }
 
         public bool DeleteBeacon(int id)
         {
-            var result = false;
+            var success = false;
             using (var context = new BeaconContext())
             {
                 try
@@ -92,19 +93,19 @@ namespace BeerBeaconBackend.Repositories
                     context.Beacons.Remove(beacon);
                     context.Entry(beacon).State = EntityState.Deleted;
                     context.SaveChanges();
-                    result = GetBeacon(beacon.BeaconId) == null;
+                    success = GetBeacon(beacon.BeaconId) == null;
                 }
                 catch
                 {
                     throw;
                 }
             }
-            return result;
+            return success;
         }
 
         public bool PutBeacon(int id, int drinks)
         {
-            var result = false;
+            var success = false;
             using (var context = new BeaconContext())
             {
                 try
@@ -114,14 +115,14 @@ namespace BeerBeaconBackend.Repositories
                     beacon.DrinkCounter = drinks;
                     context.Entry(beacon).State = EntityState.Modified;
                     context.SaveChanges();
-                    result = context.Beacons.Find(id).DrinkCounter == drinks;
+                    success = context.Beacons.Find(id).DrinkCounter == drinks;
                 }
                 catch
                 {
                     throw;
                 }
             }
-            return result;
+            return success;
         }
     }
 }

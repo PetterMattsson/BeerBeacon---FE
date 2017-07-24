@@ -28,6 +28,7 @@ namespace BeerBeaconBackend
         public DbSet<Beacon> Beacons { get; set; }
         public DbSet<Buddy> Buddies { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<LogEntry> LogEntries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -38,6 +39,7 @@ namespace BeerBeaconBackend
             builder.Entity<Beacon>().ToTable("Beacon");
             builder.Entity<Buddy>().ToTable("Buddy");
             builder.Entity<User>().ToTable("User");
+            builder.Entity<LogEntry>().ToTable("LogEntry");
 
             builder.Entity<Beacon>()
                 .HasOne(b => b.User)

@@ -25,7 +25,8 @@ namespace BeerBeaconLibrary.Helpers
             {
                 return false;
             }
-            return Validate(user.UserId);
+            //return Validate(user.UserId);
+            return true;
         }
 
         public static bool Validate(Buddy buddy)

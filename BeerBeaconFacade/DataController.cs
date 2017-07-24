@@ -85,5 +85,11 @@ namespace BeerBeaconFacade
             var controller = new BuddyController();
             return controller.PutBuddy(id, status, drinks);
         }
+
+        public void SaveLogEntry(LogEntry entry)
+        {
+            var controller = new LogEntryController();
+            controller.SaveLogEntry(entry);
+        }
     }
 }

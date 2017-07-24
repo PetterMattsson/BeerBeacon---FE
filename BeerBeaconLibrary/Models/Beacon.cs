@@ -2,6 +2,7 @@
 using BeerBeaconLibrary.Interfaces;
 using GeoCoordinatePortable;
 using System;
+using System.Collections.Generic;
 
 namespace BeerBeaconLibrary.Models
 {
@@ -41,5 +42,6 @@ namespace BeerBeaconLibrary.Models
         }
 
         public virtual User User { get; set; }
+        public virtual IEnumerable<Buddy> Buddies { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using BeerBeaconLibrary.Helpers;
 using BeerBeaconLibrary.Models;
 using BeerBeaconLibrary.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,8 +24,15 @@ namespace BeerBeaconService.Controllers
         public IEnumerable<Beacon> Get()
         {
             var beacons = new List<Beacon>();
-            beacons = DataController.GetBeacons().ToList();
-
+            try
+            {
+                beacons = DataController.GetBeacons().ToList();
+            }
+            catch (Exception e)
+            {
+                var entry = new LogEntry(e);
+                DataController.SaveLogEntry(entry);
+            }
             return beacons;
         }
 
@@ -40,7 +48,16 @@ namespace BeerBeaconService.Controllers
                 return null;
             }
 
-            var beacons = DataController.GetBeaconsByCoords(latitude, longitude).ToList();
+            var beacons = new List<Beacon>();
+            try
+            {
+                beacons = DataController.GetBeaconsByCoords(latitude, longitude).ToList();
+            }
+            catch (Exception e)
+            {
+                var entry = new LogEntry(e);
+                DataController.SaveLogEntry(entry);
+            }
             return BeaconSelector.Select(beacons, mode);
         }
 
@@ -51,56 +68,103 @@ namespace BeerBeaconService.Controllers
             {
                 return null;
             }
-            var beacon = DataController.GetBeacon(id);
-
+            var beacon = new Beacon();
+            try
+            {
+                beacon = DataController.GetBeacon(id);
+            }
+            catch (Exception e)
+            {
+                var entry = new LogEntry(e);
+                DataController.SaveLogEntry(entry);
+            }
             return beacon;
         }
-        
+
         [HttpPost]
         public bool Post([FromBody]Beacon beacon)
         {
+            var success = false;
             if (!Validator.Validate(beacon))
             {
-                return false;
+                return success;
             }
-
-            return DataController.PlaceBeacon(beacon);
+            try
+            {
+                success = DataController.PlaceBeacon(beacon);
+            }
+            catch (Exception e)
+            {
+                var entry = new LogEntry(e);
+                DataController.SaveLogEntry(entry);
+            }
+            return success;
         }
 
         [HttpPut("{id}/{drinks}")]
         public bool Put(int id, int drinks)
         {
+            var success = false;
             if (!Validator.Validate(id))
             {
-                return false;
+                return success;
             }
             if (!Validator.Validate(drinks))
             {
-                return false;
+                return success;
             }
-            var success = DataController.ChangeNumberOfDrinks(id, drinks);
 
+            try
+            {
+                success = DataController.ChangeNumberOfDrinks(id, drinks);
+            }
+            catch (Exception e)
+            {
+                var entry = new LogEntry(e);
+                DataController.SaveLogEntry(entry);
+            }
             return success;
         }
 
         [HttpDelete("{id}")]
         public bool Delete(int id)
         {
+            var success = false;
+
             if (!Validator.Validate(id))
             {
-                return false;
+                return success;
             }
-            return DataController.DeleteBeacon(id);
+            try
+            {
+                success = DataController.DeleteBeacon(id);
+            }
+            catch (Exception e)
+            {
+                var entry = new LogEntry(e);
+                DataController.SaveLogEntry(entry);
+            }
+            return success;
         }
 
         [HttpGet("{id}/buddies")]
         public IEnumerable<BuddyDTO> GetBuddiesByBeacon(int id)
         {
-            if(!Validator.Validate(id))
+            if (!Validator.Validate(id))
             {
                 return new List<BuddyDTO>();
             }
-            return DataController.GetBuddiesByBeacon(id);
+            var buddies = new List<BuddyDTO>();
+            try
+            {
+                buddies = DataController.GetBuddiesByBeacon(id).ToList();
+            }
+            catch (Exception e)
+            {
+                var entry = new LogEntry(e);
+                DataController.SaveLogEntry(entry);
+            }
+            return buddies;
         }
     }
 }

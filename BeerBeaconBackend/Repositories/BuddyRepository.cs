@@ -34,6 +34,7 @@ namespace BeerBeaconBackend.Repositories
                 try
                 {
                     context.Buddies.Add(buddy);
+                    context.Entry(buddy).State = EntityState.Added;
                     context.SaveChanges();
                     result = context.Buddies.Find(buddy.BuddyId) != null;
                 }
