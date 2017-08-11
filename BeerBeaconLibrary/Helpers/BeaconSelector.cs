@@ -21,13 +21,12 @@ namespace BeerBeaconLibrary.Helpers
 
         public static IEnumerable<Beacon> Select(List<Beacon> beacons, int mode)
         {
-            
             switch(mode)
             {
                 case (int)BeaconSelectionMode.ByCoordinate:
                     return beacons;
                 case (int)BeaconSelectionMode.OnlyPrivate:
-                    return beacons.Where(x => x.Private);
+                    return beacons.Where(b => b.Private);
                 case (int)BeaconSelectionMode.OnlyBuddies:
                     return beacons;
                 default:

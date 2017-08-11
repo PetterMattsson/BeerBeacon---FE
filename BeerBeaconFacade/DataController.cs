@@ -18,10 +18,10 @@ namespace BeerBeaconFacade
             return controller.GetBeacons();
         }
 
-        public IEnumerable<Beacon> GetBeaconsByCoords(double latitude, double longitude)
+        public IEnumerable<Beacon> GetBeaconsByCoords(double latitude, double longitude, int distance)
         {
             var controller = new BeaconController();
-            return controller.GetBeaconsByCoordinate(latitude, longitude);
+            return controller.GetBeaconsByCoordinate(latitude, longitude, distance);
         }
 
         public Beacon GetBeacon(int id)

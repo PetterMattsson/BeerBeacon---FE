@@ -36,8 +36,8 @@ namespace BeerBeaconService.Controllers
             return beacons;
         }
 
-        [HttpGet("{latitude}/{longitude}/{mode}")]
-        public IEnumerable<Beacon> GetByCoords(double latitude, double longitude, int mode)
+        [HttpGet("{latitude}/{longitude}/{mode}/{distance}")]
+        public IEnumerable<Beacon> GetByCoords(double latitude, double longitude, int mode, int distance)
         {
             if (!Validator.ValidateLatitude(latitude))
             {
@@ -51,7 +51,7 @@ namespace BeerBeaconService.Controllers
             var beacons = new List<Beacon>();
             try
             {
-                beacons = DataController.GetBeaconsByCoords(latitude, longitude).ToList();
+                beacons = DataController.GetBeaconsByCoords(latitude, longitude, distance).ToList();
             }
             catch (Exception e)
             {

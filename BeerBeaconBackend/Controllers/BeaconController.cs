@@ -14,11 +14,11 @@ namespace BeerBeaconBackend.Controllers
             return repository.GetBeacons();
         }
 
-        public IEnumerable<Beacon> GetBeaconsByCoordinate(double latitude, double longitude)
+        public IEnumerable<Beacon> GetBeaconsByCoordinate(double latitude, double longitude, int distance)
         {
             var coordinate = new GeoCoordinate(latitude, longitude);
             var repository = new BeaconRepository();
-            return repository.GetBeaconsByCoords(coordinate);
+            return repository.GetBeaconsByCoords(coordinate, distance);
         }
 
         public Beacon GetBeaconById(int id)

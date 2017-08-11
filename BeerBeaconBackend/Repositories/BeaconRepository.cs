@@ -27,14 +27,15 @@ namespace BeerBeaconBackend.Repositories
             return result;
         }
 
-        public IEnumerable<Beacon> GetBeaconsByCoords(GeoCoordinate center)
+        public IEnumerable<Beacon> GetBeaconsByCoords(GeoCoordinate center, int distance)
         {
             var result = new List<Beacon>();
+            int radius = distance * 100;
             using (var context = new BeaconContext())
             {
                 try
                 {
-                    var beacons = context.Beacons.Where(x => x.GeoCoordinate.GetDistanceTo(center) < 500).ToList();
+                    var beacons = context.Beacons.Where(x => x.GeoCoordinate.GetDistanceTo(center) < radius).ToList();
                     result = beacons.ToList();
                 }
                 catch
