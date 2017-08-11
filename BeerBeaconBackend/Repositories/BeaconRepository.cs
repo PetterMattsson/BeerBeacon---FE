@@ -70,10 +70,15 @@ namespace BeerBeaconBackend.Repositories
             {
                 try
                 {
+                    var oldBeacon = GetBeaconByUserId(beacon.UserId);
+                    context.Beacons.Remove(oldBeacon);
+                    context.Entry(oldBeacon).State = EntityState.Deleted;
+                    var buddies = context.Buddies.Where(b => b.BeaconId == oldBeacon.BeaconId);
+                    context.Buddies.RemoveRange(buddies);
                     context.Beacons.Add(beacon);
                     context.Entry(beacon).State = EntityState.Added;
                     context.SaveChanges();
-                    success = GetBeacon(beacon.BeaconId) != null;
+                    success = GetBeacon(beacon.BeaconId) != null && GetBeacon(oldBeacon.BeaconId) == null;
                 }
                 catch
                 {
@@ -81,6 +86,21 @@ namespace BeerBeaconBackend.Repositories
                 }
             }
             return success;
+        }
+
+        public Beacon GetBeaconByUserId(int id)
+        {
+            using (var context = new BeaconContext())
+            {
+                try
+                {
+                    return context.Beacons.Where(b => b.UserId == id).FirstOrDefault();
+                }
+                catch
+                {
+                    throw;
+                }
+            }
         }
 
         public bool DeleteBeacon(int id)
