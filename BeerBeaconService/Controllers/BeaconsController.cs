@@ -82,7 +82,7 @@ namespace BeerBeaconService.Controllers
         }
 
         [HttpPost]
-        public bool Post([FromBody]Beacon beacon)
+        public bool Post([FromBody]Beacon beacon, List<int> friends)
         {
             var success = false;
             if (!Validator.Validate(beacon))
@@ -91,7 +91,7 @@ namespace BeerBeaconService.Controllers
             }
             try
             {
-                success = DataController.PlaceBeacon(beacon);
+                success = DataController.PlaceBeacon(beacon, friends);
             }
             catch (Exception e)
             {

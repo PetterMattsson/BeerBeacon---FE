@@ -1,5 +1,7 @@
 ﻿using BeerBeaconLibrary.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BeerBeaconBackend.Repositories
 {
@@ -64,5 +66,34 @@ namespace BeerBeaconBackend.Repositories
             }
             return result;
         }
+
+        public void UpdateFriends(User user, List<int> friends)
+        {
+            using (var context = new BeaconContext())
+            {
+                try
+                {
+                    foreach (var friend in friends)
+                    {
+                        var userToAdd = context.Users.Where(u => u.FaceBookId == friend).FirstOrDefault();
+                        if (userToAdd != null && !user.Friends.ToList().Contains(userToAdd))
+                        {
+                            user.Friends.ToList().Add(userToAdd);
+                        }
+                        else if (userToAdd == null && user.Friends.ToList().Contains(userToAdd))
+                        {
+                            user.Friends.ToList().Remove(userToAdd);
+                        }
+                    }
+                    context.Entry(user).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+        }
     }
 }
+

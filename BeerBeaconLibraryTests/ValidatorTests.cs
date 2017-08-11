@@ -87,7 +87,7 @@ namespace BeerBeaconLibraryTests
             {
                 UserId = 1,
                 UserName = "Nille",
-                FaceBookId = "83819147419",
+                FaceBookId = 1819147419,
                 InstagramId = null,
                 Email = null,
                 Beacons = new List<Beacon>()
@@ -102,7 +102,7 @@ namespace BeerBeaconLibraryTests
             {
                 UserId = -1,
                 UserName = "Nille",
-                FaceBookId = "83819147419",
+                FaceBookId = 1819147419,
                 InstagramId = null,
                 Email = null,
                 Beacons = new List<Beacon>()

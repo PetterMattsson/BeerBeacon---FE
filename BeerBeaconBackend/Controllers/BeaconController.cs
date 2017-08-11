@@ -27,11 +27,14 @@ namespace BeerBeaconBackend.Controllers
             return repository.GetBeacon(id);
         }
 
-        public bool PostBeacon(Beacon beacon)
+        public bool PostBeacon(Beacon beacon, List<int> friends)
         {
-            var repository = new BeaconRepository();
+            var beaconRepository = new BeaconRepository();
+            var userRepository = new UserRepository();
+            var user = userRepository.GetUser(beacon.UserId);
+            userRepository.UpdateFriends(user, friends);
             beacon.StartTime = DateTime.Now;
-            return repository.PlaceBeacon(beacon);
+            return beaconRepository.PlaceBeacon(beacon);
         }
 
         public bool DeleteBeacon(int id)

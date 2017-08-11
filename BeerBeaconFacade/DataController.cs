@@ -30,10 +30,10 @@ namespace BeerBeaconFacade
             return controller.GetBeaconById(id);
         }
 
-        public bool PlaceBeacon(Beacon beacon)
+        public bool PlaceBeacon(Beacon beacon, List<int> friends)
         {
             var controller = new BeaconController();
-            return controller.PostBeacon(beacon);
+            return controller.PostBeacon(beacon, friends);
         }
 
         public bool DeleteBeacon(int id)
