@@ -1,6 +1,6 @@
 ﻿
 ASP.NET MVC core dependencies have been added to the project.
-However you may still need to do make changes to your project.
+However, you may still need to make changes to your project.
 
 1. Suggested changes to Startup class:
     1.1 Add a constructor:
